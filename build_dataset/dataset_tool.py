@@ -725,7 +725,8 @@ def create_from_brain(tfrecord_dir, image_dir, no_finding_length = 107365,
     for path in train_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        assert image_array.shape == (512,512)
+        if image_array.shape != (512,512):
+            image_array = np.asarray(image.resize((512,512)).convert("L"))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
         image_array = image_array.reshape(1,512,512)
@@ -746,7 +747,8 @@ def create_from_brain(tfrecord_dir, image_dir, no_finding_length = 107365,
     for path in val_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        assert image_array.shape == (512,512)
+        if image_array.shape != (512,512):
+            image_array = np.asarray(image.resize((512,512)).convert("L"))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
         image_array = image_array.reshape(1,512,512)
@@ -767,7 +769,8 @@ def create_from_brain(tfrecord_dir, image_dir, no_finding_length = 107365,
     for path in test_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        assert image_array.shape == (512,512)
+        if image_array.shape != (512,512):
+            image_array = np.asarray(image.resize((512,512)).convert("L"))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
         image_array = image_array.reshape(1,512,512)
