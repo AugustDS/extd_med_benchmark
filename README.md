@@ -18,7 +18,7 @@ Decide where to store raw data and set `/path_to_raw_data` accodringly
 ## Build tensorflow dataset
 Decide where to store tf dataset and set `/path_to_tf_data` accodringly. Building the dataset might require changes to the python3 command in build_dataset.sh to specify enough CPU memory for pre-processing the dataset. 
 - Can be run on 1 CPU with 100000 MB storage request 
-- `$ bash build_dataset.sh /path_to_raw_data /path_to_tf_data`
+- `$ python3 build_dataset/dataset_tool.py create_from_brain --tfrecord_dir /path_to_tf_data --image_dir /path_to_raw_data`
 
 ## Run GAN Training
 
