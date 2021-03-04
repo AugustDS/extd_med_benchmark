@@ -85,8 +85,7 @@ desc += '-cond'; dataset.max_label_size = 'full' # conditioned on full label
 
 # 128x128 resolution | DEFAULT: '-preset-v2-8gpus'
 #desc += '-preset-v2-8gpus'; num_gpus = 8; sched.minibatch_base = 64; sched.lod_initial_resolution = 128; sched.minibatch_dict = {128: 256}; sched.G_lrate_base=0.005; sched.D_lrate_base=0.005; train.total_kimg = 16000; train.compute_fid_score = True; train.minimum_fid_kimg = 9000; train.fid_snapshot_ticks = 4; train.fid_patience=2; #train.resume_run_id="/path_to_network_snapshot/network-snapshot-000000.pkl"; train.resume_kimg=000000;
-
-desc += '-preset-v2-8gpus'; num_gpus = 8; sched.minibatch_base = 64; sched.lod_initial_resolution = 256; sched.minibatch_dict = {256: 256, 512:256}; sched.G_lrate_base=0.005; sched.D_lrate_base=0.005; train.total_kimg = 16000; train.compute_fid_score = False; train.minimum_fid_kimg = 9000; train.fid_snapshot_ticks = 4; train.fid_patience=2;
+desc += '-preset-v2-8gpus'; num_gpus = 8; sched.minibatch_base = 64; sched.lod_initial_resolution = 256; sched.minibatch_dict = {256:256,512:256}; sched.G_lrate_base=0.005; sched.D_lrate_base=0.005; train.total_kimg = 4000; train.compute_fid_score = False; train.minimum_fid_kimg = 9000; train.fid_snapshot_ticks = 4; train.fid_patience=2; train.result_subdir = "./"
 
 # Numerical precision (choose one).
 desc += '-fp32'; sched.max_minibatch_per_gpu = {256: 16, 512: 8}

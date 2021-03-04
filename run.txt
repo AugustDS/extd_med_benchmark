@@ -1,0 +1,9 @@
+executable              = run.sh
+log                     = log_runs/log_gan.log
+output                  = log_runs/out_gan.txt
+error                   = log_runs/errors_gan.txt
+request_gpus            = 8
+request_cpus            = 2
+request_memory          = 100000
+requirements            = TARGET.CUDAGlobalMemoryMb > 15000
+queue
