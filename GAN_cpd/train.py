@@ -317,7 +317,7 @@ def train_progressive_gan(
     # Write final results.
     # Save final only if FID-Stopping has not happend:
     if fid_stop == False:
-        fid = compute_fid(Gs=Gs,minibatch_size=sched.minibatch, dataset_obj=training_set, iter_number=cur_nimg/1000, lod = 0.0, num_images=256, printing=False)
+        fid = compute_fid(Gs=Gs,minibatch_size=sched.minibatch, dataset_obj=training_set, iter_number=cur_nimg/1000, lod = 0.0, num_images=10000, printing=False)
         print("Final FID: %.3f at kimg %-8.1f." %(fid, cur_nimg//1000), flush=True)
         ### save final FID to .csv file in result_parent_dir
         csv_file = os.path.join(os.path.dirname(os.path.dirname(result_subdir)),"results.csv")
