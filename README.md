@@ -20,7 +20,7 @@ Decide where to store tf dataset and set `/path_to_tf_data` accodringly. Buildin
 - Can be run on 1 CPU with 100000 MB storage request 
 - `$ python3 build_dataset/dataset_tool.py create_from_brain --tfrecord_dir /path_to_tf_data --image_dir /path_to_raw_data`
 
-## Run GAN Training
+## Run GAN training
 
 - Each Job should be run on 8 GPUs with >16GB Memory (tested on 16GB Pascal P100 nodes)
 - Results will be saved under `/result_dir/1.0/000`,`/result_dir/1.0/001` etc. 
@@ -29,4 +29,4 @@ Decide where to store tf dataset and set `/path_to_tf_data` accodringly. Buildin
 
 
 ## Once training is over 
-- Share the `/result_dir/results.csv` file (Experiment + FID after 4M real images) 
+- Share the `/result_dir/results.csv` file (Experiment + FID after 4M real images) (and if possible some of the fake.png's in the result_subdir with the lowest FID score)
