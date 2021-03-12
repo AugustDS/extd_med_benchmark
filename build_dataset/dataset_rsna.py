@@ -272,7 +272,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
     all_paths = [tr_img_path,tr_txt_path,vl_img_path,vl_txt_path,te_img_path,te_txt_path]
     for check_p in all_paths:
         if not os.path.isdir(check_p):
-            os.mkdir(check_p)
+            os.makedirs(check_p)
 
     print("Save train.csv file to:", tfrecord_dir_tr+"/train.csv", flush=True)
     train_data = np.concatenate((x_tr,y_tr),axis=1)
