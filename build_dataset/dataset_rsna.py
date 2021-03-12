@@ -208,9 +208,9 @@ def transform_coordinates(x,w,h):
 
 def return_gan_label(y):
     if y == 0:
-        return([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        return([1,0,0,0,0,0,0,0,0,0,0,0,0,0])
     else:
-        return([0,0,0,0,1,0,0,0,1,0,0,0,0,0,0])
+        return([0,0,0,1,0,0,0,1,0,0,0,0,0,0])
 
 def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100, res=128):
 
