@@ -248,10 +248,10 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
             y_te.append(return_gan_label(row[1][-1]))
             y_od_te.append([np.float(row[1][-1]),np.float(row[1][1]),np.float(row[1][2]),np.float(row[1][3]),np.float(row[1][4])])
 
-    x_tr=np.asarray(x_tr);y_tr=np.asarray(y_tr); y_od_tr=np.asarray(y_od_tr)
-    x_val=np.asarray(x_val);y_val=np.asarray(y_val); y_od_val=np.asarray(y_od_val)
-    x_te=np.asarray(x_te);y_te=np.asarray(y_te); y_od_te=np.asarray(y_od_te)
-
+    x_tr=np.asarray(x_tr).reshape(-1,1);y_tr=np.asarray(y_tr); y_od_tr=np.asarray(y_od_tr)
+    x_val=np.asarray(x_val).reshape(-1,1);y_val=np.asarray(y_val); y_od_val=np.asarray(y_od_val)
+    x_te=np.asarray(x_te).reshape(-1,1);y_te=np.asarray(y_te); y_od_te=np.asarray(y_od_te)
+    
     tfrecord_dir_tr = tfrecord_dir+"/train"
     tfrecord_dir_vl = tfrecord_dir+"/valid"
     tfrecord_dir_te = tfrecord_dir+"/test"
