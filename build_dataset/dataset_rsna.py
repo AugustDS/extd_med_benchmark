@@ -359,7 +359,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
             image_save  = Image.fromarray(image_2d.astype(np.uint8))
             image_save.save(path_img)
         except:
-            print(x_val[i][0], image_2d.shape)
+            print(x_val[i][0], image_2d.shape, flush=True)
             assert 0 == 1
 
         ### GAN TF
@@ -398,7 +398,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
             image_save  = Image.fromarray(image_2d.astype(np.uint8))
             image_save.save(path_img)
         except:
-            print(x_te[i][0], image_2d.shape)
+            print(x_te[i][0], image_2d.shape, flush=True)
             assert 0 == 1
         
         ### GAN TF
