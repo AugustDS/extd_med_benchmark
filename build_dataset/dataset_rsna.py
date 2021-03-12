@@ -304,7 +304,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
     for i in range(len(x_tr)):
         dicom_file = dcmread(path_dt+"/stage_2_train_images/"+x_tr[i][0]+".dcm")
         image_2d = dicom_file.pixel_array.astype(float)
-        image_2d = resize(image_array, (res,res))
+        image_2d = resize(image_2d, (res,res))
         image_2d = (np.maximum(image_2d,0) / image_2d.max()) * 255.0
         image_2d = np.uint8(image_2d)
 
