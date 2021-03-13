@@ -341,7 +341,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
     for i in range(len(x_val)):
         dicom_file = dcmread(path_dt+"/stage_2_train_images/"+x_val[i][0]+".dcm")
         image_2d = dicom_file.pixel_array.astype(float)
-        image_2d = resize(image_array, (res,res))
+        image_2d = resize(image_2d, (res,res))
         image_2d = (np.maximum(image_2d,0) / image_2d.max()) * 255.0
         image_2d = np.uint8(image_2d)
 
@@ -355,13 +355,8 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         if cl == 1.:
             f.write(line_txt)
         f.close()
-        try:
-            image_save  = Image.fromarray(image_2d.astype(np.uint8))
-            image_save.save(path_img)
-        except:
-            print(x_val[i][0], image_2d.shape, flush=True)
-            assert 0 == 1
-
+        image_save  = Image.fromarray(image_2d)
+        image_save.save(path_img)
         ### GAN TF
         image_array = image_2d.reshape(1,res,res)
         images.append(image_array)
@@ -380,7 +375,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
     for i in range(len(x_te)):
         dicom_file = dcmread(path_dt+"/stage_2_train_images/"+x_te[i][0]+".dcm")
         image_2d = dicom_file.pixel_array.astype(float)
-        image_2d = resize(image_array, (res,res))
+        image_2d = resize(image_2d, (res,res))
         image_2d = (np.maximum(image_2d,0) / image_2d.max()) * 255.0
         image_2d = np.uint8(image_2d)
 
@@ -394,12 +389,8 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         if cl == 1.:
             f.write(line_txt)
         f.close()
-        try:
-            image_save  = Image.fromarray(image_2d.astype(np.uint8))
-            image_save.save(path_img)
-        except:
-            print(x_te[i][0], image_2d.shape, flush=True)
-            assert 0 == 1
+        image_save  = Image.fromarray(image_2d.astype(np.uint8))
+        image_save.save(path_img)
         
         ### GAN TF
         image_array = image_2d.reshape(1,res,res)
