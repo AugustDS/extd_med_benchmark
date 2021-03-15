@@ -314,7 +314,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         path_txt = os.path.join(tr_txt_path, x_tr[i][0]+".txt")
         path_img = os.path.join(tr_img_path, x_tr[i][0]+".jpg")
         bbx = transform_coordinates(bbx_orig,w=w_orig,h=h_orig)
-        line_txt = str(cl)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
+        line_txt = str(0)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
         f = open(path_txt,"a")
         if cl == 1.:
             f.write(line_txt)
@@ -353,7 +353,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         path_txt = os.path.join(vl_txt_path, x_val[i][0]+".txt")
         path_img = os.path.join(vl_img_path, x_val[i][0]+".jpg")
         bbx = transform_coordinates(bbx_orig,w=w_orig,h=h_orig)
-        line_txt = str(cl)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
+        line_txt = str(0)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
         f = open(path_txt,"a")
         if cl == 1.:
             f.write(line_txt)
@@ -389,7 +389,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         path_txt = os.path.join(te_txt_path, x_te[i][0]+".txt")
         path_img = os.path.join(te_img_path, x_te[i][0]+".jpg")
         bbx = transform_coordinates(bbx_orig,w=w_orig,h=h_orig)
-        line_txt = str(cl)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
+        line_txt = str(0)+" "+str(bbx[0])+" "+str(bbx[1])+" "+str(bbx[2])+" "+str(bbx[3])+"\n"
         f = open(path_txt,"a")
         if cl == 1.:
             f.write(line_txt)
