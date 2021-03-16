@@ -198,7 +198,7 @@ import os
 
 def create_from_xray(tfrecord_dir, image_dir, limit = 256, split = 0.1, test_val_samples=4000,np_seed=100):
 
-    path_dt = image_dir + "/CheXpert-v1.0-small"
+    path_dt = image_dir + "/CheXpert-v1.0"
     print("----------------------------------------------", flush=True)
     print('Loading images from "%s"' % path_dt, flush=True)
     data_frame = pd.read_csv(path_dt + "/train.csv")
@@ -375,10 +375,10 @@ def create_from_xray(tfrecord_dir, image_dir, limit = 256, split = 0.1, test_val
     for path in train_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        image_array = resize(image_array, (256,256))
+        image_array = resize(image_array, (1024,1024))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
-        image_array = image_array.reshape(1,256,256)
+        image_array = image_array.reshape(1,1024,1024)
         images.append(image_array)
     images = np.asarray(images)
 
@@ -396,10 +396,10 @@ def create_from_xray(tfrecord_dir, image_dir, limit = 256, split = 0.1, test_val
     for path in val_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        image_array = resize(image_array, (256,256))
+        image_array = resize(image_array, (1024,1024))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
-        image_array = image_array.reshape(1,256,256)
+        image_array = image_array.reshape(1,1024,1024)
         images.append(image_array)
     images = np.asarray(images)
 
@@ -417,10 +417,10 @@ def create_from_xray(tfrecord_dir, image_dir, limit = 256, split = 0.1, test_val
     for path in test_paths:
         image = Image.open(path[0])
         image_array = np.asarray(image.convert("L"))
-        image_array = resize(image_array, (256,256))
+        image_array = resize(image_array, (1024,1024))
         image_array = image_array / image_array.max() * 255
         image_array = image_array.astype(np.uint8)
-        image_array = image_array.reshape(1,256,256)
+        image_array = image_array.reshape(1,1024,1024)
         images.append(image_array)
     images = np.asarray(images)
 
