@@ -30,3 +30,8 @@ Decide where to store tf dataset and set `/path_to_tf_data` accodringly. Buildin
 
 ## Once training is over 
 - Share the `/result_dir/results.csv` file (Experiment + FID after 4M real images) (and if possible some of the fake.png's in the result_subdir with the lowest FID score)
+
+## License
+
+[MIT License](https://github.com/AugustDS/synthetic-medical-benchmark/blob/master/LICENSE.txt)
+
