@@ -208,9 +208,9 @@ def transform_coordinates(x,w,h):
 
 def return_gan_label(y):
     if y == 0:
-        return([1,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        return([1,0])
     else:
-        return([0,0,0,1,0,0,0,1,0,0,0,0,0,0])
+        return([0,1])
 
 def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100, res=128):
 
@@ -218,8 +218,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
     print("----------------------------------------------", flush=True)
     print('Loading images from "%s"' % path_dt, flush=True)
     data_frame = pd.read_csv(path_dt + "/stage_2_train_labels.csv")
-    header = ["Path","No Finding","Enlarged Cardiomediastinum","Cardiomegaly","Lung Opacity","Lung Lesion","Edema",
-        "Consolidation","Pneumonia","Atelectasis","Pneumothorax","Pleural Effusion","Pleural Other","Fracture","Support Devices"]
+    header = ["Path","No Finding","Pneumonia"]
     
     tfrecord_dir = save_dir + "/tf_rsna_dataset"
     objdetec_dir = save_dir + "/od_rsna_dataset"
