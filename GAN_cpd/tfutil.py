@@ -569,7 +569,15 @@ class Network:
         
         # Parse imported module.
         module = imp.new_module('_tfutil_network_import_module_%d' % len(_network_import_modules))
-        exec(self._build_module_src, module.__dict__)
+        try:
+            exec(self._build_module_src, module.__dict__)
+        except:
+            print("-------------------------")
+            print(self._build_module_src)
+            print(module.__dict__)
+            print(module)
+            print("-------------------------")
+            assert 0 == 1
         self._build_func = find_obj_in_module(module, self._build_func_name)
         _network_import_modules.append(module) # avoid gc
         
