@@ -374,11 +374,7 @@ if __name__ == "__main__":
     config.train.total_kimg = tot_k
     config.train.resume_run_id = network_run_id
     config.train.resume_kimg = num_imgs_resume
-    print("-----------------------------------")
-    print("ddir", config.data_dir, "result_dir",config.result_dir, "Glr", config.sched.G_lrate_base, "Dlr", config.sched.D_lrate_base)
-    print("rs", config.random_seed, "res", config.dataset.resolution, "ngpu", config.num_gpus)
-    print("minidic", config.sched.minibatch_dict,"Drep",config.train.D_repeats,"resumerunid",config.train.resume_run_id,"reskimg", config.train.resume_kimg)
-    print("-----------------------------------")
+
     np.random.seed(config.random_seed)
     print('Initializing TensorFlow...', flush=True)
     os.environ.update(config.env)

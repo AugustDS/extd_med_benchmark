@@ -12,6 +12,8 @@
 
 import numpy as np
 import tensorflow as tf
+from ops.upfirdn_2d import upsample_2d, downsample_2d, upsample_conv_2d, conv_downsample_2d
+from ops.fused_bias_act import fused_bias_act
 
 #----------------------------------------------------------------------------
 # Get/create weight tensor for a convolution or fully-connected layer.
