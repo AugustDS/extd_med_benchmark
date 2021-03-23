@@ -366,7 +366,7 @@ def execute_cmdline(argv):
 # Calls the function indicated in config.py.
 
 if __name__ == "__main__":
-    config.data_dir, config.result_dir,network_run_id, num_imgs_resume, config.random_seed, dataset.resolution, config.num_gpus, lr, bs, dr, tot_k = execute_cmdline(sys.argv)
+    config.data_dir, config.result_dir,network_run_id, num_imgs_resume, config.random_seed, config.dataset.resolution, config.num_gpus, lr, bs, dr, tot_k = execute_cmdline(sys.argv)
     config.sched.G_lrate_base, config.sched.D_lrate_base = lr, lr
     config.sched.lod_initial_resolution = config.dataset.resolution
     config.sched.minibatch_dict = {config.dataset.resolution : bs}
