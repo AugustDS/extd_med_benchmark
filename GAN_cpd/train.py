@@ -372,7 +372,7 @@ if __name__ == "__main__":
     config.sched.minibatch_dict = {config.dataset.resolution : bs}
     config.train.D_repeats = dr
     config.train.total_kimg = tot_k
-    config.train.resume_run_id = num_imgs_resume
+    config.train.resume_run_id = network_run_id
     config.train.resume_kimg = num_imgs_resume
     np.random.seed(config.random_seed)
     print('Initializing TensorFlow...', flush=True)
