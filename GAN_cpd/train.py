@@ -297,13 +297,13 @@ def train_progressive_gan(
                 fid_patience_step += 1
                 if len(fid_list) == 1:
                     fid_patience_step = 0
-                    misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final.pkl'))
-                    print("Save network-final for FID: %.3f at kimg %-8.1f." %(fid_list[-1], cur_nimg//1000), flush=True)
+                    misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final-full-conv.pkl'))
+                    print("Save network-final-full-conv for FID: %.3f at kimg %-8.1f." %(fid_list[-1], cur_nimg//1000), flush=True)
                 else: 
                     if fid_list[-1] < np.min(fid_list[:-1]):
                         fid_patience_step = 0
-                        misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final.pkl'))
-                        print("Save network-final for FID: %.3f at kimg %-8.1f." %(fid_list[-1], cur_nimg//1000), flush=True)
+                        misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final-full-conv.pkl'))
+                        print("Save network-final-full-conv for FID: %.3f at kimg %-8.1f." %(fid_list[-1], cur_nimg//1000), flush=True)
                     else: 
                         print("No improvement for FID: %.3f at kimg %-8.1f." %(fid_list[-1], cur_nimg//1000), flush=True)
                 if fid_patience_step == fid_patience:
@@ -320,19 +320,19 @@ def train_progressive_gan(
         fid = compute_fid(Gs=Gs,minibatch_size=sched.minibatch, dataset_obj=training_set, iter_number=cur_nimg/1000, lod = 0.0, num_images=10000, printing=False)
         print("Final FID: %.3f at kimg %-8.1f." %(fid, cur_nimg//1000), flush=True)
         ### save final FID to .csv file in result_parent_dir
-        csv_file = os.path.join(os.path.dirname(os.path.dirname(result_subdir)),"results.csv")
+        csv_file = os.path.join(os.path.dirname(os.path.dirname(result_subdir)),"results_full_conv.csv")
         list_to_append = [result_subdir.split("/")[-2]+"/"+result_subdir.split("/")[-1], fid]
         with open(csv_file, 'a') as f_object:
             writer_object = writer(f_object) 
             writer_object.writerow(list_to_append)
             f_object.close()
-        misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final.pkl'))
-        print("Save network-final.", flush=True)
+        misc.save_pkl((G, D, Gs), os.path.join(result_subdir, 'network-final-full-conv.pkl'))
+        print("Save network-final-full-conv.", flush=True)
     summary_log.close()
     open(os.path.join(result_subdir, '_training-done.txt'), 'wt').close()
 
-def train(data_dir, results_dir, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg):
-    return data_dir, results_dir, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg
+def train(data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg):
+    return data_dir, results_dir, resume_run_id_dir, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg
 #----------------------------------------------------------------------------
 def execute_cmdline(argv):
     prog = argv[0]
@@ -346,6 +346,8 @@ def execute_cmdline(argv):
     p = add_command('train',                                         'Train')
     p.add_argument('data_dir',                    help='Data Base Direcotry')
     p.add_argument('results_dir',                   help='Results Directory')
+    p.add_argument('resume_run_id_dir',            help='Resume run ID path')
+    p.add_argument('resume_kimgs',type=int,default=4000, help='Resume number of images')
     p.add_argument('random_seed',               type=int, help='Random Seed')
     p.add_argument('resolution',                type=int,  help='Resolution')
     p.add_argument('num_gpus',     type=int, default=8, help='Number of GPUs')
@@ -364,12 +366,14 @@ def execute_cmdline(argv):
 # Calls the function indicated in config.py.
 
 if __name__ == "__main__":
-    config.data_dir, config.result_dir, config.random_seed, config.dataset.resolution, config.num_gpus, lr, bs, dr, tot_k = execute_cmdline(sys.argv)
+    config.data_dir, config.result_dir,network_run_id, num_imgs_resume, config.random_seed, dataset.resolution, config.num_gpus, lr, bs, dr, tot_k = execute_cmdline(sys.argv)
     config.sched.G_lrate_base, config.sched.D_lrate_base = lr, lr
     config.sched.lod_initial_resolution = config.dataset.resolution
     config.sched.minibatch_dict = {config.dataset.resolution : bs}
     config.train.D_repeats = dr
     config.train.total_kimg = tot_k
+    config.train.resume_run_id = num_imgs_resume
+    config.train.resume_kimg = num_imgs_resume
     np.random.seed(config.random_seed)
     print('Initializing TensorFlow...', flush=True)
     os.environ.update(config.env)
