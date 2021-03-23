@@ -332,7 +332,7 @@ def train_progressive_gan(
     open(os.path.join(result_subdir, '_training-done.txt'), 'wt').close()
 
 def train(data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg):
-    return data_dir, results_dir, resume_run_id_dir, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg
+    return data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg
 #----------------------------------------------------------------------------
 def execute_cmdline(argv):
     prog = argv[0]
