@@ -322,7 +322,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         image_save.save(path_img)
 
         ### GAN TF
-        '''
+        
         image_array = image_2d.reshape(1,res,res)
         images.append(image_array)
 
@@ -333,7 +333,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         for idxi in range(order.size):
             tfr.add_image(images[order[idxi]])
         tfr.add_labels(y_tr[order])
-    '''
+
     print('Train data done.', flush=True)
 
 
@@ -360,7 +360,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         image_save  = Image.fromarray(image_2d)
         image_save.save(path_img)
         ### GAN TF
-        '''
+        
         image_array = image_2d.reshape(1,res,res)
         images.append(image_array)
 
@@ -371,7 +371,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         for idxi in range(order.size):
             tfr.add_image(images[order[idxi]])
         tfr.add_labels(y_val[order])
-    '''
+    
     print('Val data done.', flush=True)
 
     images    = []
@@ -397,7 +397,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         image_save.save(path_img)
         
         ### GAN TF
-        '''
+        
         image_array = image_2d.reshape(1,res,res)
         images.append(image_array)
 
@@ -408,7 +408,7 @@ def create_from_rsna(save_dir, image_dir, limit = 256, split = 0.1, np_seed=100,
         for idxi in range(order.size):
             tfr.add_image(images[order[idxi]])
         tfr.add_labels(y_te[order])
-    '''
+    
     print('Test data done.', flush=True)
 
     print("----------------------------------------------", flush=True)
