@@ -8,4 +8,4 @@ python3 GAN_cpd/train.py train $2 $1/3.0/002 $1/3.0/002/network-final.pkl 4000 1
 python3 GAN_cpd/train.py train $2 $1/4.0/003 $1/4.0/003/network-final.pkl 4000 1000 512 8 0.006 64 1 12000
 
 #  Re-run 256^2 Chest X-Rays
-python3 GAN_cpd/train.py train $2 $1/3.0/005 None 0 1000 256 8 0.005 256 1 12000
+python3 GAN_cpd/train.py train $2 $1/3.0/005 None 0 1000 256 8 0.005 192 1 12000
