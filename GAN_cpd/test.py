@@ -91,7 +91,7 @@ class TFRecordExporter:
 
 def test(data_dir, results_dir, random_seed, batch_size = 20): 
 
-	model_name_path = results_dir + "/network-final.pkl"
+	model_name_path = results_dir + "/network-final-full-conv.pkl"
 	print("Loading model: ", model_name_path, flush=True)
 	print("Data Base Dir:", data_dir, flush=True)
 	tf.InteractiveSession()
