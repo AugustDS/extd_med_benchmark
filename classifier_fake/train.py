@@ -23,7 +23,7 @@ import h5py
 import numpy as np
 import sys
 import argparse
-from alt_model_checkpoint import _define_alt_model_checkpoint
+#from alt_model_checkpoint import _define_alt_model_checkpoint
 
 def train(model_dir, results_subdir, random_seed, resolution):
     np.random.seed(random_seed)
@@ -204,7 +204,7 @@ def train(model_dir, results_subdir, random_seed, resolution):
 
         output_weights_path = os.path.join(output_dir, output_weights_name)
         print("** set output weights path to:", output_weights_path,flush=True)
-
+        """
         if num_gpu > 1:
             print("** MULTI_gpu_model is used! gpus=", num_gpu)
             AltModelCheckpoint = _define_alt_model_checkpoint(ModelCheckpoint)
@@ -214,15 +214,15 @@ def train(model_dir, results_subdir, random_seed, resolution):
                 save_weights_only=True,
                 save_best_only=False,
                 verbose=1)
-        else:
-            print("** SINGLE_gpu_model is used!", flush=True)
-            model_train = model
-            checkpoint = ModelCheckpoint(
-                 output_weights_path,
-                 save_weights_only=True,
-                 save_best_only=False,
-                 verbose=1,
-            )
+        """
+        print("** SINGLE_gpu_model is used!", flush=True)
+        model_train = model
+        checkpoint = ModelCheckpoint(
+             output_weights_path,
+             save_weights_only=True,
+             save_best_only=False,
+             verbose=1,
+        )
 
         print("** compile model with class weights **",flush=True)
         optimizer = Adam(lr=initial_learning_rate)
