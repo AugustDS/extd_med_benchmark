@@ -205,7 +205,7 @@ def test(data_dir, results_dir, random_seed, batch_size = 20):
 		else:
 			all_images = np.concatenate((all_images,images),axis=0)
 		if i % 100 == 0:
-			print("batch", i, "out of", num_batches_tr, "done.")
+			print("batch", i, "out of", num_batches_tr, "done.", flush=True)
 
 	print('Saving train inference TFRecords..', flush=True)
 	with TFRecordExporter(inf_path_train, all_images.shape[0], progress_interval=5000) as tfr:
