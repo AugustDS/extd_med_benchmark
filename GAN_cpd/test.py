@@ -18,6 +18,7 @@ import pandas as pd
 import os 
 import sys
 import argparse
+import datetime
 
 class TFRecordExporter:
     def __init__(self, tfrecord_dir, expected_images, print_progress=True, progress_interval=10):
@@ -89,7 +90,7 @@ class TFRecordExporter:
     def __exit__(self, *args):
         self.close()
 
-def test(data_dir, results_dir, random_seed, batch_size = 20): 
+def test(data_dir, results_dir, random_seed, batch_size = 100): 
 
 	model_name_path = results_dir + "/network-final-full-conv.pkl"
 	print("Loading model: ", model_name_path, flush=True)
@@ -205,7 +206,8 @@ def test(data_dir, results_dir, random_seed, batch_size = 20):
 		else:
 			all_images = np.concatenate((all_images,images),axis=0)
 		if i % 100 == 0:
-			print("batch", i, "out of", num_batches_tr, "done.", flush=True)
+			now = datetime.datetime.now()
+			print("time",now.strftime("%H:%M")," batch", i, "out of", num_batches_tr, "done.", flush=True)
 
 	print('Saving train inference TFRecords..', flush=True)
 	with TFRecordExporter(inf_path_train, all_images.shape[0], progress_interval=5000) as tfr:
