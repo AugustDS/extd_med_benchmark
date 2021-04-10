@@ -166,13 +166,13 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
         y, y_orig, y_label = train_seq.__getitem__(i)            #[BS,H,W,D]
         y_latrep = intermediate_layer_model.predict(y) #[BS,LS]  
         
-        y_reshaped = y.reshape([BS,1,H,W,D])   #Reshape for tiling [BS,1,H,W,D]
-        y_orig_reshaped = y_orig.reshape([BS,1,H_orig,W_orig,D])
-        y_label_reshaped = y_label.reshape([BS,1,x_label.shape[1]])
+        #y_reshaped = y.reshape([BS,1,H,W,D])   #Reshape for tiling [BS,1,H,W,D]
+        #y_orig_reshaped = y_orig.reshape([BS,1,H_orig,W_orig,D])
+        #y_label_reshaped = y_label.reshape([BS,1,x_label.shape[1]])
 
-        y_tiled = np.tile(y_reshaped,[1,n,1,1,1])       #Tile: [BS,n,H,W,D]
-        y_orig_tiled = np.tile(y_orig_reshaped,[1,n,1,1,1])
-        y_label_tiled = np.tile(y_label_reshaped,[1,n,1])
+        y_tiled = np.tile(y,[1,n,1,1,1])       #Tile: [BS,n,H,W,D]
+        y_orig_tiled = np.tile(y_orig,[1,n,1,1,1])
+        y_label_tiled = np.tile(y_label,[1,n,1])
 
         cosdis  = np.ones((n,BS)) - cosine_similarity(x_latrep, y_latrep) #[n,BS]
         argmin_cosdis = np.argmin(cosdis,axis=1)                          #[n,1]
