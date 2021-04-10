@@ -199,7 +199,7 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
     renorm_and_save_npy(cur_nn_imgs,name="nn_images_224")
     renorm_and_save_npy(cur_nn_imgs_orig,name="nn_images_512")
     save_array(cur_cos_min, name="cosdistance_minimum")
-    save_array(curr_nn_labels, name="nn_labels")
+    save_array(cur_nn_labels, name="nn_labels")
 
 
 def execute_cmdline(argv):
