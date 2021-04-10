@@ -156,29 +156,38 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
     LS = x_latrep.shape[1]
     cur_nn_imgs = np.zeros((n,H,W,D))  #Current nn images
     cur_nn_imgs_orig = np.zeros((n,H_orig,W_orig,D))
+    cur_nn_labels = np.zeros((n,x_label.shape[1]))
     cur_cos_min = np.ones((n,1))*10000 #Current minimum cosine distance
 
     time_old = time.time()
     print("** Start nn determination **", flush =True)
     for i in range(0,train_steps):
         # Get batch images and lat. reps 
-        y, y_orig, _ = train_seq.__getitem__(i)            #[BS,H,W,D]
+        y, y_orig, y_label = train_seq.__getitem__(i)            #[BS,H,W,D]
         y_latrep = intermediate_layer_model.predict(y) #[BS,LS]  
+        
         y_reshaped = y.reshape([BS,1,H,W,D])   #Reshape for tiling [BS,1,H,W,D]
-        y_orig_reshaped = y_orig.reshape([BS,1,H_orig,W_orig,D]) 
-        y_tiled = np.tile(y,[1,n,1,1,1])       #Tile: [BS,n,H,W,D]
-        y_orig_tiled = np.tile(y_orig,[1,n,1,1,1])
+        y_orig_reshaped = y_orig.reshape([BS,1,H_orig,W_orig,D])
+        y_label_reshaped = y_label.reshape([BS,1,x_label.shape[1]])
+
+        y_tiled = np.tile(y_reshaped,[1,n,1,1,1])       #Tile: [BS,n,H,W,D]
+        y_orig_tiled = np.tile(y_orig_reshaped,[1,n,1,1,1])
+        y_label_tiled = np.tile(y_label_reshaped,[1,n,1])
+
         cosdis  = np.ones((n,BS)) - cosine_similarity(x_latrep, y_latrep) #[n,BS]
         argmin_cosdis = np.argmin(cosdis,axis=1)                          #[n,1]
         min_cosdis = np.min(cosdis,axis=1).reshape(n,1)                   #[n,1]
+        
         min_y = y_tiled[:,argmin_cosdis].reshape(n,H,W,D)                 #[n,H,W,D]: Min. Cosdis for each inf_img from batch
         min_y_orig = y_orig_tiled[:,argmin_cosdis].reshape(n,H_orig,W_orig,D)
+        min_ylabel = y_label_tiled[:,argmin_cosdis].reshape((n,x_label.shape[1]))
+
         t = np.where(min_cosdis<cur_cos_min)                              #Indicies where min. cosdistance is smaller then current 
         
         cur_cos_min[t[0]] = min_cosdis[t[0]]                              #Update current cosdis minima
         cur_nn_imgs[t[0]] = min_y[t[0]]                                    #Update current nn images 
         cur_nn_imgs_orig[t[0]] = min_y_orig[t[0]]
-        cur_ys = np.zeros((test_bs,x.shape[1],x.shape[2],x.shape[3]))
+        curr_nn_labels[t[0]] = min_ylabel[t[0]]
 
         if i%100 == 0 and i>0:
             time_new = time.time()
@@ -190,6 +199,7 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
     renorm_and_save_npy(cur_nn_imgs,name="nn_images_224")
     renorm_and_save_npy(cur_nn_imgs_orig,name="nn_images_512")
     save_array(cur_cos_min, name="cosdistance_minimum")
+    save_array(curr_nn_labels, name="nn_labels")
 
 
 def execute_cmdline(argv):
