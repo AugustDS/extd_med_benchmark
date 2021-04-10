@@ -187,7 +187,7 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
         cur_cos_min[t[0]] = min_cosdis[t[0]]                              #Update current cosdis minima
         cur_nn_imgs[t[0]] = min_y[t[0]]                                    #Update current nn images 
         cur_nn_imgs_orig[t[0]] = min_y_orig[t[0]]
-        curr_nn_labels[t[0]] = min_ylabel[t[0]]
+        cur_nn_labels[t[0]] = min_ylabel[t[0]]
 
         if i%100 == 0 and i>0:
             time_new = time.time()
