@@ -8,11 +8,11 @@
 #python3 GAN_cpd/train.py train $2 $1/4.0/003 $1/4.0/003/network-final.pkl 4000 1000 512 8 0.006 64 1 12000
 
 #  Re-run 256^2 Chest X-Rays
-python3 GAN_cpd/train.py train $2 $1/8.0/000 None 0 2000 256 8 0.005 160 1 6257.0 False
-python3 GAN_cpd/train.py train $2 $1/8.0/001 None 0 3000 256 8 0.005 160 1 6257.0 False
-python3 GAN_cpd/train.py train $2 $1/8.0/002 None 0 4000 256 8 0.005 160 1 6257.0 False
+python3 GAN_cpd/train.py train $2 $1/8.0/000 None 0 2000 256 8 0.005 160 1 6257.0 0
+python3 GAN_cpd/train.py train $2 $1/8.0/001 None 0 3000 256 8 0.005 160 1 6257.0 0
+python3 GAN_cpd/train.py train $2 $1/8.0/002 None 0 4000 256 8 0.005 160 1 6257.0 0
 
 # Re-run 512^2 Chest X-rays 6345.0
-python3 GAN_cpd/train.py train $2 $1/9.0/000 None 0 2000 512 8 0.006 64 1 6345.0 False
-python3 GAN_cpd/train.py train $2 $1/9.0/001 None 0 3000 512 8 0.006 64 1 6345.0 False
-python3 GAN_cpd/train.py train $2 $1/9.0/002 None 0 4000 512 8 0.006 64 1 6345.0 False
+python3 GAN_cpd/train.py train $2 $1/9.0/000 None 0 2000 512 8 0.006 64 1 6345.0 0
+python3 GAN_cpd/train.py train $2 $1/9.0/001 None 0 3000 512 8 0.006 64 1 6345.0 0
+python3 GAN_cpd/train.py train $2 $1/9.0/002 None 0 4000 512 8 0.006 64 1 6345.0 0

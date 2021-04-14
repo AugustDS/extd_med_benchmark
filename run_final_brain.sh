@@ -8,10 +8,10 @@
 #python3 GAN_cpd/train.py train $2 $1/2.0/001 $1/2.0/001/network-final.pkl 4000 1000 512 8 0.005 64 1 12000
 
 # 256^2 random seed repeats
-python3 GAN_cpd/train.py train $2 $1/5.0/000 None 0 2000 256 8 0.005 160 1 6096.0 False
-python3 GAN_cpd/train.py train $2 $1/5.0/001 None 0 3000 256 8 0.005 160 1 6096.0 False
-python3 GAN_cpd/train.py train $2 $1/5.0/002 None 0 4000 256 8 0.005 160 1 6096.0 False
+python3 GAN_cpd/train.py train $2 $1/5.0/000 None 0 2000 256 8 0.005 160 1 6096.0 0
+python3 GAN_cpd/train.py train $2 $1/5.0/001 None 0 3000 256 8 0.005 160 1 6096.0 0
+python3 GAN_cpd/train.py train $2 $1/5.0/002 None 0 4000 256 8 0.005 160 1 6096.0 0
 
 # 512^2 restart, test 2 LR again
-python3 GAN_cpd/train.py train $2 $1/6.0/000 None 0 1000 512 8 0.005 64 1 12000 True
-python3 GAN_cpd/train.py train $2 $1/6.0/001 None 0 1000 512 8 0.006 64 1 12000 True
+python3 GAN_cpd/train.py train $2 $1/6.0/000 None 0 1000 512 8 0.005 64 1 12000 1
+python3 GAN_cpd/train.py train $2 $1/6.0/001 None 0 1000 512 8 0.006 64 1 12000 1

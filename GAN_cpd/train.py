@@ -332,7 +332,7 @@ def train_progressive_gan(
     open(os.path.join(result_subdir, '_training-done.txt'), 'wt').close()
 
 def train(data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg,compute_fid):
-    return data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg,compute_fid
+    return data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg, bool(compute_fid)
 #----------------------------------------------------------------------------
 def execute_cmdline(argv):
     prog = argv[0]
@@ -355,7 +355,7 @@ def execute_cmdline(argv):
     p.add_argument('batch_size',   type=int, default = 256,  help='batch size')
     p.add_argument('disc_repeats', type=int, default=1,   help='Disc repeats per Gen')
     p.add_argument('total_kimg',   type=int,default=4000, help='Total k_train images')
-    p.add_argument('compute_fid',  type=bool, default=False, help='whether to perform early stopp with FID')
+    p.add_argument('compute_fid',  type=int, default=0, help='whether to perform early stopp with FID, 0 False, 1 True')
 
 
     args = parser.parse_args(argv[1:] if len(argv) > 1 else ['-h'])
