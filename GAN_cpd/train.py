@@ -331,8 +331,8 @@ def train_progressive_gan(
     summary_log.close()
     open(os.path.join(result_subdir, '_training-done.txt'), 'wt').close()
 
-def train(data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg):
-    return data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg
+def train(data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg,compute_fid):
+    return data_dir, results_dir, resume_run_id_dir, resume_kimgs, random_seed, resolution, num_gpus, learn_rate, batch_size, disc_repeats, total_kimg,compute_fid
 #----------------------------------------------------------------------------
 def execute_cmdline(argv):
     prog = argv[0]
@@ -355,6 +355,7 @@ def execute_cmdline(argv):
     p.add_argument('batch_size',   type=int, default = 256,  help='batch size')
     p.add_argument('disc_repeats', type=int, default=1,   help='Disc repeats per Gen')
     p.add_argument('total_kimg',   type=int,default=4000, help='Total k_train images')
+    p.add_argument('compute_fid',  type=bool, default=False, help='whether to perform early stopp with FID')
 
 
     args = parser.parse_args(argv[1:] if len(argv) > 1 else ['-h'])
@@ -366,12 +367,13 @@ def execute_cmdline(argv):
 # Calls the function indicated in config.py.
 
 if __name__ == "__main__":
-    config.data_dir, config.result_dir,network_run_id, num_imgs_resume, config.random_seed, config.dataset.resolution, config.num_gpus, lr, bs, dr, tot_k = execute_cmdline(sys.argv)
+    config.data_dir, config.result_dir,network_run_id, num_imgs_resume, config.random_seed, config.dataset.resolution, config.num_gpus, lr, bs, dr, tot_k, comp_fid = execute_cmdline(sys.argv)
     config.sched.G_lrate_base, config.sched.D_lrate_base = lr, lr
     config.sched.lod_initial_resolution = config.dataset.resolution
     config.sched.minibatch_dict = {config.dataset.resolution : bs}
     config.train.D_repeats = dr
     config.train.total_kimg = tot_k
+    config.train.compute_fid_score = comp_fid
     config.train.resume_run_id = network_run_id
     config.train.resume_kimg = num_imgs_resume
 
