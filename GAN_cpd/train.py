@@ -167,6 +167,12 @@ def train_progressive_gan(
     with tf.device('/gpu:0'):
         if resume_run_id != "None":
             network_pkl = misc.locate_network_pkl(resume_run_id, resume_snapshot)
+            resume_pkl_name = os.path.splitext(os.path.basename(network_pkl))[0]
+            try:
+                resume_kimg = int(resume_pkl_name.split('-')[-1])
+                print('** Setting resume kimg to', resume_kimg, flush=True)
+            except:
+                print('** Keeping resume kimg as:', resume_kimg, flush=True)
             print('Loading networks from "%s"...' % network_pkl, flush=True)
             G, D, Gs = misc.load_pkl(network_pkl)
         else:
