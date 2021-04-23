@@ -176,8 +176,8 @@ def inference(data_dir, result_subdir, random_seed, batch_size = 20):
     csv_input_valid = data_dir + "/valid/valid.csv"
     inf_path_test = result_subdir + "/inference/test_pngs"
 
-    inf_path_reals = inf_path_test + "/fakes"
-    inf_path_fakes = inf_path_test + "/reals"
+    inf_path_reals = inf_path_test + "/reals"
+    inf_path_fakes = inf_path_test + "/fakes"
     csv_save_fakes = inf_path_fakes + "/test.csv"
     csv_save_reals = inf_path_reals + "/test.csv"
 
