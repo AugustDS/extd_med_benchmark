@@ -11,15 +11,18 @@
 #python3 GAN_cpd/train.py train $2 $1/5.0/000 None 0 2000 256 8 0.005 160 1 6096.0 0
 #python3 GAN_cpd/train.py train $2 $1/5.0/001 None 0 3000 256 8 0.005 160 1 6096.0 0
 #python3 GAN_cpd/train.py train $2 $1/5.0/002 None 0 4000 256 8 0.005 160 1 6096.0 0
-python3 GAN_cpd/train.py train $2 $1/5.0/003 None 0 1000 256 8 0.005 192 1 6096.0 0
+#python3 GAN_cpd/train.py train $2 $1/5.0/003 None 0 1000 256 8 0.005 192 1 6096.0 0
 
 # 512^2 restart, test 2 LR again
 #python3 GAN_cpd/train.py train $2 $1/6.0/000 None 0 1000 512 8 0.005 64 1 12000 1
 #python3 GAN_cpd/train.py train $2 $1/6.0/001 None 0 1000 512 8 0.006 64 1 12000 1
-python3 GAN_cpd/train.py train $2 $1/6.0/002 None 0 1000 512 8 0.005 64 1 12000 1
-python3 GAN_cpd/train.py train $2 $1/6.0/003 None 0 1000 512 8 0.005 96 1 12000 1
-python3 GAN_cpd/train.py train $2 $1/6.0/004 None 0 1000 512 8 0.005 96 1 12000 1
+#python3 GAN_cpd/train.py train $2 $1/6.0/002 None 0 1000 512 8 0.005 64 1 12000 1
+#python3 GAN_cpd/train.py train $2 $1/6.0/003 None 0 1000 512 8 0.005 96 1 12000 1
+#python3 GAN_cpd/train.py train $2 $1/6.0/004 None 0 1000 512 8 0.005 96 1 12000 1
 
 # Restart
 # python3 GAN_cpd/train.py train $2 $1/6.0/000 $1/6.0/000 0 1000 512 8 0.005 64 1 12000 1
 # python3 GAN_cpd/train.py train $2 $1/6.0/001 $1/6.0/001 0 1000 512 8 0.006 64 1 12000 1
+python3 GAN_cpd/train.py train $2 $1/6.0/002 $1/6.0/002 0 1000 512 8 0.005 64 1 12000 1
+python3 GAN_cpd/train.py train $2 $1/6.0/003 $1/6.0/003 0 1000 512 8 0.005 96 1 12000 1
+python3 GAN_cpd/train.py train $2 $1/6.0/004 $1/6.0/004 1000 512 8 0.005 96 1 12000 1

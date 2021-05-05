@@ -12,19 +12,20 @@
 #python3 GAN_cpd/train.py train $2 $1/8.0/001 None 0 3000 256 8 0.005 160 1 6257.0 0
 #python3 GAN_cpd/train.py train $2 $1/8.0/002 None 0 4000 256 8 0.005 160 1 6257.0 0
 
-python3 GAN_cpd/train.py train $2 $1/8.0/003 None 0 5000 256 8 0.005 192 1 6257.0 0
-python3 GAN_cpd/train.py train $2 $1/8.0/004 None 0 6000 256 8 0.005 192 1 6257.0 0
+#python3 GAN_cpd/train.py train $2 $1/8.0/003 None 0 5000 256 8 0.005 192 1 6257.0 0
+#python3 GAN_cpd/train.py train $2 $1/8.0/004 None 0 6000 256 8 0.005 192 1 6257.0 0
 
 
 # Re-run 512^2 Chest X-rays 6345.0
 #python3 GAN_cpd/train.py train $2 $1/9.0/000 None 0 2000 512 8 0.006 64 1 6345.0 0
 #python3 GAN_cpd/train.py train $2 $1/9.0/001 None 0 3000 512 8 0.006 64 1 6345.0 0
 #python3 GAN_cpd/train.py train $2 $1/9.0/002 None 0 4000 512 8 0.006 64 1 6345.0 0
-python3 GAN_cpd/train.py train $2 $1/9.0/003 None 0 1000 512 8 0.006 96 1 6345.0 0
-python3 GAN_cpd/train.py train $2 $1/9.0/004 None 0 5000 512 8 0.006 96 1 6345.0 0
+#python3 GAN_cpd/train.py train $2 $1/9.0/003 None 0 1000 512 8 0.006 96 1 6345.0 0
+#python3 GAN_cpd/train.py train $2 $1/9.0/004 None 0 5000 512 8 0.006 96 1 6345.0 0
 
 # Restart
 #python3 GAN_cpd/train.py train $2 $1/9.0/000 $1/9.0/000 0 2000 512 8 0.006 64 1 6345.0 0
 #python3 GAN_cpd/train.py train $2 $1/9.0/001 $1/9.0/001 0 3000 512 8 0.006 64 1 6345.0 0
 #python3 GAN_cpd/train.py train $2 $1/9.0/002 $1/9.0/002 0 4000 512 8 0.006 64 1 6345.0 0
+python3 GAN_cpd/train.py train $2 $1/9.0/004 $1/9.0/004 0 5000 512 8 0.006 96 1 6345.0 0
 
