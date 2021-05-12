@@ -169,7 +169,7 @@ def inference(data_dir, result_subdir, random_seed, batch_size = 20):
     tf.InteractiveSession()
 
     dataset = TFRecordDataset(tfrecord_file=tf_test_record_file,
-                        label_file=tf_test_label_file, resolution=512, max_label_size = "full")
+                        label_file=tf_test_label_file, resolution=256, max_label_size = "full")
 
     csv_input_test  = data_dir + "/test/test.csv"
     csv_input_train = data_dir + "/train/train.csv"
