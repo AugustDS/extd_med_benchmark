@@ -1,6 +1,8 @@
 import os
 import numpy as np
 import PIL 
+from PIL import Image
+import pandas 
 
 base_path = "/work/aschuette/extd_med_benchmark/results/4.0/003/classification_results"
 chest = True
