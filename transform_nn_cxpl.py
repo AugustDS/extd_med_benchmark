@@ -54,15 +54,15 @@ for i in range(0,n):
     img_nn_224 = (255.0 / img_nn_224.max() * (img_nn_224 - img_nn_224.min())).astype(np.uint8)
     img_nn_224 = Image.fromarray(img_nn_224)
     
-    img_inf_512.save(directory_512+"/"+np.str(i)+'_inf.png')
-    img_nn_512.save(directory_512+"/"+np.str(i)+'_nns.png')
-    img_inf_224.save(directory_224+"/"+np.str(i)+'_inf.png')
-    img_nn_224.save(directory_224+"/"+np.str(i)+'_nns.png')
+    img_inf_512.save(directory_512+"/"+str(i)+'_inf.png')
+    img_nn_512.save(directory_512+"/"+str(i)+'_nns.png')
+    img_inf_224.save(directory_224+"/"+str(i)+'_inf.png')
+    img_nn_224.save(directory_224+"/"+str(i)+'_nns.png')
 
     labels_nn.append(nn_labels[i])
     labels_inf.append(inf_labels[i])
-    paths_nn.append(np.str(i)+"_nns.png")
-    paths_inf.append(np.str(i)+"_inf.png")
+    paths_nn.append(str(i)+"_nns.png")
+    paths_inf.append(str(i)+"_inf.png")
 
 paths_nn = np.asarray(paths_nn).reshape(-1,1)
 labels_nn = np.asarray(labels_nn)
