@@ -163,7 +163,7 @@ def inference(data_dir, result_subdir, random_seed, batch_size = 20):
     print("Loading model: ", model_name_path, flush=True)
     print("Data Base Dir:", data_dir, flush=True)
 
-    tf_test_record_file = data_dir + "/test/test-r09.tfrecords"
+    tf_test_record_file = data_dir + "/test/test-r08.tfrecords"
     tf_test_label_file  = data_dir + "/test/test-rxx.labels"
 
     tf.InteractiveSession()
