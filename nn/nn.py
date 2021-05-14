@@ -148,8 +148,8 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
     train_seq.initialise()
     print("** generator loaded **", flush =True)
     # Loop through training data and compute minimums 
-    H,H_orig = image_dimension, 512
-    W,W_orig = image_dimension, 512
+    H,H_orig = image_dimension, 256
+    W,W_orig = image_dimension, 256
     D = 3
     BS = batch_size
     n = test_bs
@@ -197,7 +197,7 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
 
     print("** Loop Done **",flush=True)
     renorm_and_save_npy(cur_nn_imgs,name="nn_images_224")
-    renorm_and_save_npy(cur_nn_imgs_orig,name="nn_images_512")
+    renorm_and_save_npy(cur_nn_imgs_orig,name="nn_images_256")
     save_array(cur_cos_min, name="cosdistance_minimum")
     save_array(cur_nn_labels, name="nn_labels")
 
