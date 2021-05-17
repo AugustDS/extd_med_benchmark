@@ -153,7 +153,7 @@ def cxpl(model_dir, data_dir, results_subdir, random_seed, resolution):
     # Load Paths & Labels
     paths=[]
     labels=[]
-    df_nn = pd.read_csv(output_dir+"/nn_files/nn_path_and_labels.csv")
+    df_nn = pd.read_csv(output_dir[:-4]+"nn_files/nn_path_and_labels.csv")
     for row in df_nn.iterrows():
         labels.append(row[1][1:].astype(np.float32))
         paths.append(row[1][0])
