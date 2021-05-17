@@ -166,7 +166,7 @@ def cxpl(model_dir, data_dir, results_subdir, random_seed, resolution):
     imagenet_std = np.array([0.229, 0.224, 0.225])
     imgs = []
     for path in paths:
-        img = Image.open(output_dir+"/nn_files/"+path)
+        img = Image.open(output_dir[:-4]+"nn_files/"+path)
         img = np.asarray(img.convert("L"))
         img = img / 255.
         img = np.reshape(img,[img.shape[0],img.shape[1],1])
@@ -189,9 +189,9 @@ def cxpl(model_dir, data_dir, results_subdir, random_seed, resolution):
         else:
             amap_final = np.concatenate((amap_final,attribution_map), axis=0)
     x_unnorm = x_cx*imagenet_std+imagenet_mean
-    np.save(output_dir+"/nn_files/y_cx_nn.npy", y_cx[:n_max*batchsize_cxpl])
-    np.save(output_dir+"/nn_files/x_cx_nn.npy", x_unnorm[:n_max*batchsize_cxpl])
-    np.save(output_dir+"/nn_files/attr_nn.npy", amap_final)
+    np.save(output_dir[:-4]+"nn_files/y_cx_nn.npy", y_cx[:n_max*batchsize_cxpl])
+    np.save(output_dir[:-4]+"nn_files/x_cx_nn.npy", x_unnorm[:n_max*batchsize_cxpl])
+    np.save(output_dir[:-4]+"nn_files/attr_nn.npy", amap_final)
 
 def execute_cmdline(argv):
     prog = argv[0]
