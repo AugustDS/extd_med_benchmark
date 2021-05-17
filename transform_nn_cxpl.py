@@ -4,9 +4,9 @@ import PIL
 from PIL import Image
 import pandas as pd
 
-base_path = "/work/aschuette/extd_med_benchmark/results/1.0/002/classification_results"
+base_path = "/work/aschuette/extd_med_benchmark/results/3.0/002/classification_results"
 resolution = 256
-chest = False
+chest = True
 
 if resolution == 512:
     directory_224 = base_path + "/224/nn_files" 
