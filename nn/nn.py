@@ -126,7 +126,7 @@ def nn(model_dir, data_dir, results_subdir, random_seed, resolution):
     test_seq.initialise()
     x, x_orig, x_label = test_seq.__getitem__(0)
     renorm_and_save_npy(x,name="real_inf_224")
-    renorm_and_save_npy(x_orig, name="real_inf_512")
+    renorm_and_save_npy(x_orig, name="real_inf_256")
     save_array(x_label, name="real_inf_label")
 
     print("** Compute inf latent rep **", flush=True)
