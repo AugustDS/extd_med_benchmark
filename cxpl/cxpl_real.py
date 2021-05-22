@@ -176,14 +176,21 @@ def cxpl(model_dir, data_dir, results_subdir, random_seed, resolution):
     x_cx = np.asarray(imgs)
 
     # Compute causal contribution:
-    attribution_map = get_delta_map(x=x_cx, model=model, labels=y_cx, 
-                  downsample_factor=4, 
-                  log_transform=False,
-                  normalize=False)
+    batchsize_cxpl = 40
+    n_max = x_cx.shape[0]//batchsize_cxpl
+    for i in range(0,n_max):
+        attribution_map = get_delta_map(x=x_cx[i*batchsize_cxpl:(i+1)*batchsize_cxpl], model=model, labels=y_cx[i*batchsize_cxpl:(i+1)*batchsize_cxpl], 
+                      downsample_factor=4, 
+                      log_transform=False,
+                      normalize=False)
+        if i == 0:
+            amap_final = attribution_map
+        else:
+            amap_final = np.concatenate((amap_final,attribution_map), axis=0)
     x_unnorm = x_cx*imagenet_std+imagenet_mean
-    np.save(output_dir+"/nn_files/y_cx_nn.npy", y_cx)
-    np.save(output_dir+"/nn_files/x_cx_nn.npy", x_unnorm)
-    np.save(output_dir+"/nn_files/attr_nn.npy", attribution_map)
+    np.save(output_dir+"/nn_files/y_cx_nn.npy", y_cx[:n_max*batchsize_cxpl])
+    np.save(output_dir+"/nn_files/x_cx_nn.npy", x_unnorm[:n_max*batchsize_cxpl])
+    np.save(output_dir+"/nn_files/attr_nn.npy", amap_final)
 
 def execute_cmdline(argv):
     prog = argv[0]
