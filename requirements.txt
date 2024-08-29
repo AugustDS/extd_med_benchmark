@@ -1,12 +1,1 @@
-numpy==1.17.4
-scipy>=1.0.0
-sckit-learn==0.22.1
-scikit-image==0.16.2
-moviepy>=0.2.3.2
-Pillow>=3.1.1
-lmdb>=0.93
-opencv-python>=3.4.0.12
-cryptography>=2.1.4
-h5py==2.10.0
-six>=1.11.0
-kaggle==1.5.10
+
