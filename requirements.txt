@@ -1,7 +1,5 @@
 numpy==1.17.4
 scipy>=1.0.0
-tensorflow-gpu==1.15.0
-Keras==2.2.4
 sckit-learn==0.22.1
 scikit-image==0.16.2
 moviepy>=0.2.3.2
